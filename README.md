@@ -14,7 +14,7 @@
 		<li><h3><a href="https://github.com/dbiguene/bash_utils/blob/main/better_norminette.sh">better_norminette:</a></h3>
 			<p>Runs norminette with a prettier output</p>
 			<p>Example: <code>./better_norminette.sh -s *.c</code></p>
-			<p><code>-s</code> or <code>--silent</code> flag will show nothiung on the console, but the output will be in the log file</p>
+			<p><code>-s</code> or <code>--silent</code> flag will show nothing on the console, but the output will be in the log file</p>
 			<small>Idea is from <a targer="_blank" href="https://github.com/gd-harco/">gd-harco</a>, code is from me</small>
 		</li>
 	</ul>
