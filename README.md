@@ -16,6 +16,20 @@
 			<p>Example: <code>./better_norminette.sh -s *.c</code></p>
 			<small>Idea is from <a targer="_blank" href="https://github.com/gd-harco/">gd-harco</a>, code is from me</small>
 		</li>
+		<li><h3><a href="https://github.com/dbiguene/bash-utils/easy_git.sh">easy_git:</a></h3>
+			<p>Easier way to manage your repo, add files, commit...</p>
+			<h4>Flags: </h4>
+			<p>Notice that all the following flags arent mandatory, using them will just prevent the script to ask you for branc name, repo url, remote name,...</p>
+			<ul>
+				<li><code>-s | --silent</code>: Hide all git console messages</li>
+				<li><code>-af="<files>" | --addfiles="<files>"</code>: Files to add on the repo</li>
+				<li><code>-c="<message>" | --commit="<message>"</code>: Commit message</li>
+				<li><code>-r="<remote_name>" | --remote="<remote_name>"</code>: Set the remote name</li>
+				<li><code>-url="<repo_url>" | --repo_url="<repo_url>"</code>: Set the repo url</li>
+				<li><code>-b="<branch_name>" | --branch="<branch_name>"</code>: Set the branch name</li>
+			</ul>
+			<p>Example: <code>./easy_git.sh -s -af="." -c="Commit message" -url="https://github.com/dbiguene/bash_utils.git" -r="origin" -b="main"</code> Will init a repo, checkout to branch "main", add "origin" remote on "https://github.com/dbiguene/bash_utils", add all files, and commit "Commit message"</p>
+		</li>
 	</ul>
 	<h2 id="issues">Issues</h2>
 	<p>If you find a bug or encounter an issue using this funciton, feel free to open a issue, or a pull request if you know how to fix it</p>
