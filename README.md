@@ -6,9 +6,15 @@
 	<p>bash_utils is a set of useful bash scripts (made for 42 computers, some features will therefore not be useful / usable elsewhere)</p>
 	<h2>Table of content: </h2>
 	<ul>
+		<li><a href="#installation">Installation</a></li>
 		<li><a href="#features">Features</a></li>
 		<li><a href="#issues">Issues</a></li>
 	</ul>
+	<h2 id="installation">Installation</h2>
+	<code>
+		git clone https://github.com/dbiguene/bash-utils.git
+		bash ./bash_utils/installer.sh
+	</code>
 	<h2 id="features">Features</h2>
 	<ul>
 		<li><h3><a href="https://github.com/dbiguene/bash-utils/better_norminette.sh">better_norminette:</a></h3>
@@ -29,16 +35,6 @@
 				<li><code>-b="branch_name" | --branch="branch_name"</code>: Set the branch name</li>
 			</ul>
 			<p>Example: <code>./easy_git.sh -s -af="." -c="Commit message" -url="https://github.com/dbiguene/bash_utils.git" -r="origin" -b="main"</code> Will init a repo, checkout to branch "main", add "origin" remote on "https://github.com/dbiguene/bash_utils", add all files, and commit "Commit message"</p>
-		</li>
-		<li><h3><a href="https://github.com/dbiguene/bash-utils/make_autoload.sh">make_autoload:</a></h3>
-			<p>Easier way to put all your source / header files in your makefile...</p>
-			<h4>Flags: </h4>
-			<p>Notice that all the following flags arent mandatory, using them will just prevent the script to ask you for branc name, repo url, remote name,...</p>
-			<ul>
-				<li><code>-srcs="src_dir" | --sources="src_dir"</code>: Set the sources directory</li>
-				<li><code>-h="headers_dir" | --headers="headers_dir"</code>: Set the headers directory</li>
-			</ul>
-			<p>Example: <code>./make_autoload.sh -srcs="src/" -h="include/"</code> Will list and format all .c files of ./src/ and all .h files of ./include/ into ./output.txt</p>
 		</li>
 	</ul>
 	<h2 id="issues">Issues</h2>
