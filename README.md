@@ -11,10 +11,10 @@
 		<li><a href="#issues">Issues</a></li>
 	</ul>
 	<h2 id="installation">Installation</h2>
-	<code>
+	<pre>
 		git clone https://github.com/dbiguene/bash-utils.git
 		bash ./bash_utils/installer.sh
-	</code>
+	</pre>
 	<h2 id="features">Features</h2>
 	<ul>
 		<li><h3><a href="https://github.com/dbiguene/bash-utils/better_norminette.sh">better_norminette:</a></h3>
