@@ -12,8 +12,8 @@
 	</ul>
 	<h2 id="installation">Installation</h2>
 	<pre>
-		git clone https://github.com/dbiguene/bash-utils.git
-		bash ./bash_utils/installer.sh
+git clone https://github.com/dbiguene/bash-utils.git
+bash ./bash_utils/installer.sh
 	</pre>
 	<h2 id="features">Features</h2>
 	<ul>
