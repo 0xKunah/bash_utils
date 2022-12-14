@@ -15,7 +15,7 @@
 bash ./bash_utils/installer.sh</pre>
 	<h2 id="features">Features</h2>
 	<ul>
-		<li><h3><a href="https://github.com/dbiguene/bash-utils/better_norminette.sh">better_norminette:</a></h3>
+		<li><h3><a href="https://github.com/dbiguene/bash_utils/better_norminette.sh">better_norminette:</a></h3>
 			<p>Runs norminette with a prettier output</p>
 			<p>Example: <code>./better_norminette.sh -s *.c</code></p>
 			<small>Idea is from <a targer="_blank" href="https://github.com/gd-harco/">gd-harco</a>, code is from me</small>
