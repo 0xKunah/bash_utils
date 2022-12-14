@@ -6,9 +6,14 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 20:13:39 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/12 22:33:54 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/12/14 13:44:43 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
+
+#!/bin/sh
+
+# Load extern functions
+source $(dirname "${BASH_SOURCE[0]}")/utils.sh
 
 filename="better_norminette.log"
 silent=0
@@ -33,18 +38,18 @@ norminette $files | grep "Error" | awk '{
 }' > $filename
 
 if [ $(cat $filename | wc -l) -eq 0 ]; then
-	printf "\033[1;32m0 Norminette errors found !\033[1;00m\n"
+	colored_printf $green "0 Norminette errors found !\n"
 	rm -f $filename
 else {
 	if [ $silent -eq 1 ]; then
 		norm_errors=$(norminette $files | grep "Error:" | wc -l)
-		color=32
+		color=$green
 		if [ $norm_errors -gt 60 ]; then
-			color=31
+			color=$red
 		elif [ $norm_errors -gt 30 ]; then
-			color=33
+			color=$yellow
 		fi
-		printf "\033[1;%sm%d\033[1;00m Norminette errors found, see \033[1;34m%s/$filename\033[1;00m for more infos." $color $norm_errors $(pwd)
+		colored_printf $color "$norm_errors\033[1;00m Norminette errors found, see \033[1;34m$(pwd)/$filename\033[1;00m for more infos." 
 	else
 		cat $filename | awk '{
 			if ($1 == "Line") {

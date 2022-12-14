@@ -6,13 +6,12 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 18:26:54 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/13 20:06:40 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/12/14 13:35:53 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-# Colors for prettier messages
-cyan="\033[1;36m"
-green="\033[1;32m"
+# Load extern functions
+source $(dirname "${BASH_SOURCE[0]}")/utils.sh
 
 # Parse flags
 for i in "$@"; do
@@ -36,30 +35,6 @@ for i in "$@"; do
       ;;
   esac
 done
-
-# Print with colors
-colored_printf()
-{
-	printf "${1}$2\033[1;00m" $3
-}
-
-# Ask user for a [y/n] choice
-ask_choice=0
-ask()
-{
-	colored_printf $cyan "$1 [y/n]: "
-	read choice
-	# If choice is "y" or "n", the variable to 1 or 0
-	if [ "$choice" = "y" ]; then
-		ask_choice=1
-	elif [ "$choice" = "n" ]; then
-		ask_choice=0
-	# Else, ask again
-	else
-		ask "$1"
-	fi
-}
-
 
 # If srcs flag has not been used
 if [ "$srcs" = "" ]; then
