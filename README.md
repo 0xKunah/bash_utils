@@ -15,12 +15,12 @@
 bash ./bash_utils/installer.sh</pre>
 	<h2 id="features">Features</h2>
 	<ul>
-		<li><h3><a href="https://github.com/dbiguene/bash_utils/better_norminette.sh">better_norminette:</a></h3>
+		<li><h3><a href="https://github.com/dbiguene/bash_utils/blob/main/better_norminette.sh">better_norminette:</a></h3>
 			<p>Runs norminette with a prettier output</p>
 			<p>Example: <code>./better_norminette.sh -s *.c</code></p>
 			<small>Idea is from <a targer="_blank" href="https://github.com/gd-harco/">gd-harco</a>, code is from me</small>
 		</li>
-		<li><h3><a href="https://github.com/dbiguene/bash-utils/easy_git.sh">easy_git:</a></h3>
+		<li><h3><a href="https://github.com/dbiguene/bash_utils/blob/main/easy_git.sh">easy_git:</a></h3>
 			<p>Easier way to manage your repo, add files, commit...</p>
 			<h4>Flags: </h4>
 			<p>Notice that all the following flags arent mandatory, using them will just prevent the script to ask you for branc name, repo url, remote name,...</p>
@@ -34,7 +34,7 @@ bash ./bash_utils/installer.sh</pre>
 			</ul>
 			<p>Example: <code>./easy_git.sh -s -af="." -c="Commit message" -url="https://github.com/dbiguene/bash_utils.git" -r="origin" -b="main"</code> Will init a repo, checkout to branch "main", add "origin" remote on "https://github.com/dbiguene/bash_utils", add all files, and commit "Commit message"</p>
 		</li>
-		<li><h3><a href="https://github.com/dbiguene/bash-utils/make_autoload.sh">make_autoload:</a></h3>
+		<li><h3><a href="https://github.com/dbiguene/bash_utils/blob/main/make_autoload.sh">make_autoload:</a></h3>
 			<p>Easier way to load your dependencies on your makefile</p>
 			<h4>Flags: </h4>
 			<p>Notice that all the following flags arent mandatory, using them will just prevent the script to ask you for branc name, repo url, remote name,...</p>
