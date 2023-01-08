@@ -42,7 +42,19 @@ bash ./bash_utils/installer.sh</pre>
 				<li><code>-srcs="src_dir" | --sources="src_dir"</code>: Set srcs dir</li>
 				<li><code>-h="headers_dir" | --headers="headers_dir"</code>: Set headers dir</li>
 			</ul>
-			<p>Example: <code>./make_autoload -srcs="src/" -h="include/"</code> Will llist and format all .c files into src/ dir, and all .h files into include/ dir</p>
+			<p>Example: <code>./make_autoload -srcs="src/" -h="include/"</code> Will list and format all .c files into src/ dir, and all .h files into include/ dir</p>
+		</li>
+		<li><h3><a href="https://github.com/dbiguene/bash_utils/blob/main/templater.sh">templater:</a></h3>
+			<p>Easier way to start your projects, with a prebuilt makefile and a clean structure, can handle libs too</p>
+			<h4>Flags: </h4>
+			<p>Notice that all the following flags arent mandatory, using them will just prevent the script to ask you for branc name, repo url, remote name,...</p>
+			<ul>
+				<li><code>-l="libft_url" | --libft="libft_url"</code>: Creates a project using your libft</li>
+				<li><code>-mlx | --minilibx</code>: Creates a project using mlx</li>
+				<li><code>-p="project_path" | --path="project_path"</code>: Creates the project to the given path</li>
+				<li><code>-n="project_name" | --name="project_name"</code>: Set the project name</li>
+			</ul>
+			<p>Example: <code>./templater -n="so_long" -p="." -mlx</code> Will create a project named "so_long" to "./" using mlx</p>
 		</li>
 	</ul>
 	<h2 id="issues">Issues</h2>

@@ -13,7 +13,7 @@
 #!/bin/sh
 
 # Load extern functions
-source $(dirname "${BASH_SOURCE[0]}")/utils.sh
+source $(dirname $0)/utils.sh
 
 filename="better_norminette.log"
 silent=0
