@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/08 18:24:45 by dbiguene          #+#    #+#              #
-#    Updated: 2023/01/08 20:24:49 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2023/01/09 13:40:56 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,31 +15,39 @@
 # Load extern functions
 source $(dirname "${BASH_SOURCE[0]}")/utils.sh
 
+os="$(uname -s)"
+
+if [ "$os" = "Linux" ]; then
+	sed_command="sed -i"
+elif [ "$os" = "Darwin" ]; then
+	sed_command="sed -i .bak"
+fi
+
 # Parse flags
 for i in "$@"; do
   case $i in
 	# Libft flag (add libft to project)
-    -l=*|--libft=*)
+    -l=*~--libft=*)
       libft="${i#*=}"
       shift
       ;;
 	# MLX flag (add mlx to project)
-    -mlx|--minilibx)
+    -mlx~--minilibx)
       mlx=1
       shift
       ;;
     # Path flag (set the path for the project)
-    -p=*|--path=*)
+    -p=*~--path=*)
       path="${i#*=}"
       shift
       ;;
     # Name flag (set the name of the project)
-    -n=*|--name=*)
+    -n=*~--name=*)
       name="${i#*=}"
       shift
       ;;
 	# All unsupported flags
-    -*|--*)
+    -*~--*)
       echo "Unknown option $i"
       exit 1
       ;;
@@ -112,84 +120,90 @@ fi
 # Create the Makefile
 
 # First, download the template using curl
-curl -s https://cdn.kunah.fr/makefile_template > $path/$name/Makefile
+curl -k -s https://cdn.kunah.fr/makefile_template > $path/$name/Makefile
 
+sleep 2
+ 
 # Replace {{name}} with the name of the project in mt file
-sed -i "s/{{name}}/$name/g" $path/$name/Makefile
+$sed_command "s/{{name}}/$name/g" $path/$name/Makefile
 
 # If libft is used in the project, replace {{libft_path}} with the path of the libft
 if [ "$libft" != "" ]; then
-    sed -i "s/{{libft_path}}/LIBFT            =   libft\/libft\.a/g" $path/$name/Makefile
+    $sed_command "s/{{libft_path}}/LIBFT            =   libft\/libft\.a/g" $path/$name/Makefile
 
     # Then replace {{libft_name}} with the name of the libft
-    sed -i "s/{{libft_name}}/\${LIBFT}/g" $path/$name/Makefile
+    $sed_command "s/{{libft_name}}/\${LIBFT}/g" $path/$name/Makefile
 
     # Then replace {{base_framework}} with the base framework
-    sed -i "s/{{base_framework}}/FRAMEWORKS		=	-Llibft -lft/g" $path/$name/Makefile
+    $sed_command "s/{{base_framework}}/FRAMEWORKS		=	-Llibft -lft/g" $path/$name/Makefile
 
     # Then replace {{libft_rule}} with the libft rule
-    libft_rule="\${LIBFT}		:\n\
-                        make -C libft\n\
+    libft_rule="\${LIBFT}		:~\
+                        make -C libft~\
                         @echo \"\\\033[0;32m [\${NAME}\/libft] : ✔️ Successfully built libft\033[1;36m \${@} !\\\033[0;32m\""
-    sed -i "s/{{libft_rule}}/$libft_rule/g" $path/$name/Makefile
+    $sed_command "s/{{libft_rule}}/$libft_rule/g" $path/$name/Makefile
 else
     # Else, remove the libft rule
-    sed -i "s/{{libft_rule}}//g" $path/$name/Makefile
+    $sed_command "s/{{libft_rule}}//g" $path/$name/Makefile
 
     # Then remove the libft path
-    sed -i "s/{{libft_path}}//g" $path/$name/Makefile
+    $sed_command "s/{{libft_path}}//g" $path/$name/Makefile
 
     # Then remove the libft name
-    sed -i "s/{{libft_name}}//g" $path/$name/Makefile
+    $sed_command "s/{{libft_name}}//g" $path/$name/Makefile
 fi
 
 # If mlx is used in the project, replace {{mlx_path}} with the path of the mlx
 if [ "$mlx" != "" ]; then
     mlx='MLX              =   mlx\/libmlx\.a'
-    sed -i "s/{{mlx_path}}/$mlx/g" $path/$name/Makefile
+    $sed_command "s/{{mlx_path}}/$mlx/g" $path/$name/Makefile
 
     # Then replace {{mlx_name}} with the name of the libft
-    sed -i "s/{{mlx_name}}/\${MLX}/g" $path/$name/Makefile
+    $sed_command "s/{{mlx_name}}/\${MLX}/g" $path/$name/Makefile
 
     # Then replace {{mlx_rule}} with the mlx rule
-    mlx_rule="\${MLX}		:\n\
-                        make -C mlx\n\
+    mlx_rule="\${MLX}		:~\
+                        make -C mlx~\
                         @echo \"\\\033[0;32m [\${NAME}\/mlx] : ✔️ Successfully built mlx\033[1;36m \${@} !\\\033[0;32m\""
-    sed -i "s/{{mlx_rule}}/$mlx_rule/g" $path/$name/Makefile
+    $sed_command "s/{{mlx_rule}}/$mlx_rule/g" $path/$name/Makefile
 
     # Then replace {{os_flags}} with the os flags
-    os_flags="ifeq (\$(UNAME), Linux)\n\
-FRAMEWORKS		+= -lXext -lX11 -lm -lz\n\
-endif\n\
-\n\
-ifeq (\$(UNAME), Darwin)\n\
-FRAMEWORKS		+=	-framework OpenGL -framework AppKit\n\
+    os_flags="ifeq (\$(UNAME), Linux)~\
+FRAMEWORKS		+= -lXext -lX11 -lm -lz~\
+endif~\
+~\
+ifeq (\$(UNAME), Darwin)~\
+FRAMEWORKS		+=	-framework OpenGL -framework AppKit~\
 endif"
 
-    sed -i "s/{{os_flags}}/$os_flags/g" $path/$name/Makefile
+    $sed_command "s/{{os_flags}}/$os_flags/g" $path/$name/Makefile
 else
     # Else, replace {{os_flags}} with nothing
-    sed -i "s/{{os_flags}}//g" $path/$name/Makefile
+    $sed_command "s/{{os_flags}}//g" $path/$name/Makefile
 
     # Then replace {{mlx_name}} with nothing
-    sed -i "s/{{mlx_name}}//g" $path/$name/Makefile
+    $sed_command "s/{{mlx_name}}//g" $path/$name/Makefile
 
     # Then replace {{mlx_rule}} with nothing
-    sed -i "s/{{mlx_rule}}//g" $path/$name/Makefile
+    $sed_command "s/{{mlx_rule}}//g" $path/$name/Makefile
 
     # Then replace {{mlx_path}} with nothing
-    sed -i "s/{{mlx_path}}//g" $path/$name/Makefile
+    $sed_command "s/{{mlx_path}}//g" $path/$name/Makefile
 
 fi
 
 # Finally if libft or MLX is used, replace {{framework}} with the FRAMEWORKS variable
 if [ "$mlx" = "" ] || [ "$libft" = "" ]; then
-    sed -i "s/{{framework}}/\${FRAMEWORKS}/g" $path/$name/Makefile
+    $sed_command "s/{{framework}}/\${FRAMEWORKS}/g" $path/$name/Makefile
 else
-    sed -i "s/{{framework}}//g" $path/$name/Makefile
+    $sed_command "s/{{framework}}//g" $path/$name/Makefile
 
-    sed -i "s/{{base_framework}}//g" $path/$name/Makefile
+    $sed_command "s/{{base_framework}}//g" $path/$name/Makefile
 fi
+
+cat $path/$name/Makefile | tr '~' '\n' > $path/$name/Makefile.bak
+
+mv $path/$name/Makefile.bak $path/$name/Makefile
 
 # Says that the project has been created
 colored_printf $green "Project $name has been created in $path/$name !"
