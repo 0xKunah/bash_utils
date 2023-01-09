@@ -121,8 +121,6 @@ fi
 
 # First, download the template using curl
 curl -k -s https://cdn.kunah.fr/makefile_template > $path/$name/Makefile
-
-sleep 2
  
 # Replace {{name}} with the name of the project in mt file
 $sed_command "s/{{name}}/$name/g" $path/$name/Makefile
