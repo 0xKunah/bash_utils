@@ -27,27 +27,27 @@ fi
 for i in "$@"; do
   case $i in
 	# Libft flag (add libft to project)
-    -l=*~--libft=*)
+    -l=*|--libft=*)
       libft="${i#*=}"
       shift
       ;;
 	# MLX flag (add mlx to project)
-    -mlx~--minilibx)
+    -mlx|--minilibx)
       mlx=1
       shift
       ;;
     # Path flag (set the path for the project)
-    -p=*~--path=*)
+    -p=*|--path=*)
       path="${i#*=}"
       shift
       ;;
     # Name flag (set the name of the project)
-    -n=*~--name=*)
+    -n=*|--name=*)
       name="${i#*=}"
       shift
       ;;
 	# All unsupported flags
-    -*~--*)
+    -*|--*)
       echo "Unknown option $i"
       exit 1
       ;;
