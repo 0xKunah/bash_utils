@@ -204,4 +204,4 @@ cat $path/$name/Makefile | tr '~' '\n' > $path/$name/Makefile.bak
 mv $path/$name/Makefile.bak $path/$name/Makefile
 
 # Says that the project has been created
-colored_printf $green "Project $name has been created in $path/$name !"
+colored_printf $green "Project $name has been created in $path/$name !\n"
