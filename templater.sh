@@ -138,7 +138,7 @@ if [ "$libft" != "" ]; then
     # Then replace {{libft_rule}} with the libft rule
     libft_rule="\${LIBFT}		:~\
                         make -C libft~\
-                        @echo \"\\\033[0;32m [\${NAME}\/libft] : ✔️ Successfully built libft\033[1;36m \${@} !\\\033[0;32m\""
+                        @echo \"\\\033[0;32m [\${NAME}\/libft] : ✔️ Successfully built libft\\\033[1;36m \${@} !\\\033[0;32m\""
     $sed_command "s/{{libft_rule}}/$libft_rule/g" $path/$name/Makefile
 else
     # Else, remove the libft rule
