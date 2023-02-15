@@ -16,7 +16,7 @@
 source $(dirname "${BASH_SOURCE[0]}")/utils.sh
 
 # Default path (can be changed with -p flag)
-path="/nfs/homes/$(who | grep 'console' | awk '{print $1}')/sgoinfre/bash_utils"
+path="/nfs/homes/$(who | awk '{print $1}')/sgoinfre/bash_utils"
 
 # Parse flags
 for i in "$@"; do
